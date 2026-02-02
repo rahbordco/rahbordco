@@ -9,149 +9,368 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         .modal-open { overflow: hidden; }
-        .step-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .step-card { transition: all 0.3s ease; }
+        .step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .mobile-menu.active { max-height: 500px; }
+        .success-message { animation: slideIn 0.3s ease; }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold text-blue-800 tracking-tight italic">Wellben</div>
-            <div class="hidden md:flex space-x-8 font-semibold text-slate-600 italic">
-                <a href="#home" class="hover:text-blue-600 transition">Home</a>
-                <a href="#process" class="hover:text-blue-600 transition">Our Process</a>
-                <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
-                <button onclick="toggleModal('privacy-modal')" class="text-sm bg-slate-100 px-3 py-1 rounded-lg hover:bg-slate-200 transition">Privacy Policy</button>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-extrabold text-blue-800 tracking-tight italic">Wellben</div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 font-semibold text-slate-600 italic">
+                    <a href="#home" class="hover:text-blue-600 transition">Home</a>
+                    <a href="#process" class="hover:text-blue-600 transition">Our Process</a>
+                    <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+                    <button onclick="toggleModal('privacy-modal')" class="text-sm bg-slate-100 px-3 py-1 rounded-lg hover:bg-slate-200 transition">Privacy Policy</button>
+                </div>
+                
+                <a href="tel:4058381020" class="hidden md:block bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition shadow-lg font-bold">Call (405) 838-1020</a>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-700 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
-            <a href="tel:4058381020" class="bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition shadow-lg font-bold">Call Now</a>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="pt-4 pb-3 space-y-3">
+                    <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-slate-600 font-semibold hover:text-blue-600 transition">Home</a>
+                    <a href="#process" onclick="toggleMobileMenu()" class="block py-2 text-slate-600 font-semibold hover:text-blue-600 transition">Our Process</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-600 font-semibold hover:text-blue-600 transition">Contact</a>
+                    <button onclick="toggleModal('privacy-modal'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-600 font-semibold hover:text-blue-600 transition">Privacy Policy</button>
+                    <a href="tel:4058381020" class="block mt-4 bg-blue-700 text-white px-6 py-3 rounded-full hover:bg-blue-800 transition shadow-lg font-bold text-center">Call (405) 838-1020</a>
+                </div>
+            </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="pt-32 pb-20 px-6 bg-gradient-to-b from-white to-slate-50">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="text-blue-700 font-bold tracking-widest uppercase text-sm">Professional, Fast, Affordable</span>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900 mt-4">
+                <span class="text-blue-700 font-bold tracking-widest uppercase text-xs bg-blue-50 px-3 py-1 rounded-full">Professional, Fast, Affordable</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900 mt-6">
                     Whole Life and <span class="text-blue-700">Term Life</span> Insurance Needs
                 </h1>
-                <p class="mt-8 text-lg text-slate-600 leading-relaxed italic">
-                    "I am excited to help working families protect what's most important, their own families. By helping clients choose the right coverage for their needs, we provide the reassurance every family deserves."
+                <p class="mt-8 text-lg text-slate-600 leading-relaxed italic border-l-4 border-blue-200 pl-6">
+                    "I am excited to help working families protect what's most important, their own families. By helping clients choose the right coverage for their needs, we can provide the reassurance every family deserves."
                 </p>
-                <div class="mt-6 p-4 bg-white rounded-2xl shadow-sm border-l-4 border-green-500 inline-block">
-                    <p class="font-bold text-slate-800">BEN SAFFARY KHOZANI</p>
-                    <p class="text-sm text-slate-500 italic">Servicing Manager, Agent | LIC #: 21692150</p>
+                <div class="mt-8 p-6 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 inline-block">
+                    <p class="font-black text-xl text-slate-800">BEHZAD (BEN) SAFFARY KHOZANI</p>
+                    <p class="text-sm text-blue-600 font-bold italic">Servicing Manager, Agent | LIC #: 21692150</p>
                 </div>
             </div>
-        <div class="relative flex justify-center">
-    <div class="absolute inset-0 bg-blue-200 blur-3xl rounded-full opacity-20"></div>
-    <img src="ben-saffary.jpg" alt="Ben Saffary Khozani" class="relative rounded-[2.5rem] shadow-2xl w-full max-w-md border-4 border-white">
+            <div class="relative flex justify-center">
+                <div class="absolute inset-0 bg-blue-400 blur-[100px] rounded-full opacity-10"></div>
+                <!-- Placeholder for image - replace with actual image path -->
+                <div class="relative rounded-[3rem] shadow-2xl w-full max-w-md border-8 border-white bg-gradient-to-br from-blue-100 to-slate-100 aspect-[3/4] flex items-center justify-center">
+                    <div class="text-center p-8">
+                        <div class="w-32 h-32 bg-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center text-6xl">👤</div>
+                        <p class="text-slate-500 text-sm italic">Photo placeholder<br/>Replace with: ben-saffary.jpg</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Process Section -->
     <section id="process" class="py-24 bg-white px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4 uppercase">The Process is Quite Simple</h2>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 uppercase tracking-tighter">The Process is Quite Simple</h2>
                 <p class="text-blue-600 font-bold italic text-xl">4 Easy Steps to Becoming Insured</p>
             </div>
             
             <div class="grid md:grid-cols-4 gap-8">
-                <div class="step-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
-                    <div class="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center mx-auto mb-6 font-black text-xl">1</div>
-                    <h3 class="font-bold mb-3 text-lg">Needs Analysis</h3>
-                    <p class="text-sm text-slate-600">First, we do a needs analysis to see what you may have.</p>
+                <div class="step-card bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 text-center">
+                    <div class="w-14 h-14 bg-blue-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 font-black text-2xl shadow-lg shadow-blue-200 rotate-3">1</div>
+                    <h3 class="font-extrabold mb-4 text-xl">Needs Analysis</h3>
+                    <p class="text-slate-600 leading-relaxed">First, We Do a Needs Analysis to See What You Need.</p>
                 </div>
-                <div class="step-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
-                    <div class="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center mx-auto mb-6 font-black text-xl">2</div>
-                    <h3 class="font-bold mb-3 text-lg">Provide Options</h3>
-                    <p class="text-sm text-slate-600">Second, we provide the options for you to choose from.</p>
+                <div class="step-card bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 text-center">
+                    <div class="w-14 h-14 bg-blue-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 font-black text-2xl shadow-lg shadow-blue-200 -rotate-3">2</div>
+                    <h3 class="font-extrabold mb-4 text-xl">Options</h3>
+                    <p class="text-slate-600 leading-relaxed">Second, We Provide the Options for You to Choose From.</p>
                 </div>
-                <div class="step-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
-                    <div class="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center mx-auto mb-6 font-black text-xl">3</div>
-                    <h3 class="font-bold mb-3 text-lg">Your Decision</h3>
-                    <p class="text-sm text-slate-600">Third, you decide on the options and choose what's best.</p>
+                <div class="step-card bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 text-center">
+                    <div class="w-14 h-14 bg-blue-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 font-black text-2xl shadow-lg shadow-blue-200 rotate-3">3</div>
+                    <h3 class="font-extrabold mb-4 text-xl">Decision</h3>
+                    <p class="text-slate-600 leading-relaxed">Third, You Decide on the Options and Choose.</p>
                 </div>
-                <div class="step-card bg-slate-50 p-8 rounded-3xl border border-slate-100 text-center">
-                    <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 font-black text-xl">4</div>
-                    <h3 class="font-bold mb-3 text-lg">Final Approval</h3>
-                    <p class="text-sm text-slate-600">Fourth, we submit the application to underwriters for approval.</p>
+                <div class="step-card bg-green-50 p-8 rounded-[2.5rem] border border-green-100 text-center">
+                    <div class="w-14 h-14 bg-green-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 font-black text-2xl shadow-lg shadow-green-200 -rotate-3">4</div>
+                    <h3 class="font-extrabold mb-4 text-xl text-green-900">Approval</h3>
+                    <p class="text-green-800 leading-relaxed">Fourth, We Submit the Application for Approval.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 relative z-10">
             <div>
-                <h2 class="text-4xl font-black mb-8 italic uppercase tracking-tighter text-blue-400">Globe Life <br><span class="text-white text-2xl font-normal">Liberty National Division</span></h2>
-                <div class="space-y-8 mt-10">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-600/20 p-4 rounded-full text-blue-400">📞</div>
+                <h2 class="text-4xl font-black mb-4 italic uppercase tracking-tighter text-blue-400">Globe Life</h2>
+                <p class="text-2xl font-light text-slate-300 mb-10">Liberty National Division</p>
+                <div class="space-y-8">
+                    <div class="flex items-center space-x-5 group">
+                        <div class="bg-blue-600 p-4 rounded-2xl group-hover:bg-blue-500 transition">📞</div>
                         <div>
-                            <p class="text-slate-400 text-xs uppercase font-bold">Call Directly</p>
-                            <a href="tel:4058381020" class="text-xl font-bold hover:text-blue-400 transition">(405) 838-1020</a>
+                            <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Call Directly</p>
+                            <a href="tel:4058381020" class="text-2xl font-bold hover:text-blue-400 transition">(405) 838-1020</a>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-600/20 p-4 rounded-full text-blue-400">📧</div>
+                    <div class="flex items-center space-x-5 group">
+                        <div class="bg-slate-800 p-4 rounded-2xl group-hover:bg-blue-600 transition">📧</div>
                         <div>
-                            <p class="text-slate-400 text-xs uppercase font-bold">Email Us</p>
-                            <a href="mailto:BehzadSaffaryKhozani.Globe@gmail.com" class="text-lg font-bold hover:text-blue-400 transition">BehzadSaffaryKhozani.Globe@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-600/20 p-4 rounded-full text-blue-400">🌐</div>
-                        <div>
-                            <p class="text-slate-400 text-xs uppercase font-bold">Official Link</p>
-                            <a href="https://GlobeLifeLibertyNational.com" target="_blank" class="text-lg font-bold hover:text-blue-400 transition">GlobeLifeLibertyNational.com</a>
+                            <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Email</p>
+                            <a href="mailto:BehzadSaffaryKhozani.Globe@gmail.com" class="text-lg font-semibold hover:text-blue-400 transition break-all">BehzadSaffaryKhozani.Globe@gmail.com</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white/5 p-10 rounded-[2rem] border border-white/10 backdrop-blur-sm">
-                <h3 class="text-2xl font-bold mb-6">Request Analysis</h3>
-                <form class="space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500">
-                    <input type="email" placeholder="Email Address" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500">
-                    <textarea placeholder="Tell us about your family protection needs..." rows="4" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                    <button class="w-full bg-blue-600 py-4 rounded-xl font-black hover:bg-blue-500 transition shadow-xl uppercase tracking-widest">Submit Application</button>
+            
+            <!-- Contact Form -->
+            <div class="bg-white/5 p-10 rounded-[3rem] border border-white/10 backdrop-blur-xl">
+                <div id="success-message" class="hidden success-message mb-6 p-4 bg-green-500 text-white rounded-2xl text-center font-bold">
+                    ✓ Message sent successfully! We'll contact you soon.
+                </div>
+                <form id="contact-form" class="space-y-5" onsubmit="handleSubmit(event)">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <input type="text" id="firstName" name="firstName" placeholder="First Name" required 
+                                   class="w-full bg-slate-800/50 border-none rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500">
+                            <span class="text-red-400 text-xs hidden" id="firstName-error">Required field</span>
+                        </div>
+                        <div>
+                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required 
+                                   class="w-full bg-slate-800/50 border-none rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500">
+                            <span class="text-red-400 text-xs hidden" id="lastName-error">Required field</span>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Email" required 
+                               class="w-full bg-slate-800/50 border-none rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500">
+                        <span class="text-red-400 text-xs hidden" id="email-error">Valid email required</span>
+                    </div>
+                    <div>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number (Optional)" 
+                               pattern="[0-9\-\(\)\s]+" 
+                               class="w-full bg-slate-800/50 border-none rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500">
+                        <span class="text-red-400 text-xs hidden" id="phone-error">Invalid phone number</span>
+                    </div>
+                    <div>
+                        <textarea id="message" name="message" placeholder="How can we help your family?" rows="4" required 
+                                  class="w-full bg-slate-800/50 border-none rounded-2xl p-4 text-white outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <span class="text-red-400 text-xs hidden" id="message-error">Please tell us how we can help</span>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 py-5 rounded-2xl font-black hover:bg-blue-500 transition shadow-2xl uppercase tracking-widest">
+                        Submit Application
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-white text-center border-t">
-        <p class="text-slate-400 text-sm">© 2026 Wellben. All Rights Reserved. | <button onclick="toggleModal('privacy-modal')" class="underline hover:text-blue-600">Privacy Policy</button></p>
-        <p class="mt-2 text-[10px] text-slate-300 uppercase tracking-[0.2em]">Designed for Licensed Professionals</p>
+    <!-- Footer -->
+    <footer class="py-12 bg-white text-center border-t border-slate-100">
+        <p class="text-slate-400 text-sm font-medium">© 2026 Wellben. All Rights Reserved. | <button onclick="toggleModal('privacy-modal')" class="underline hover:text-blue-700">Privacy Policy</button></p>
+        <p class="mt-4 text-[10px] text-slate-300 uppercase tracking-[0.4em] font-bold">Licensed in Texas, Kentucky, Colorado</p>
     </footer>
 
-    <div id="privacy-modal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-slate-900/90 backdrop-blur-sm">
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-slate-900/95 backdrop-blur-md">
         <div class="flex min-h-screen items-center justify-center p-4">
-            <div class="relative w-full max-w-4xl rounded-[2.5rem] bg-white shadow-2xl overflow-hidden">
-                <div class="flex items-center justify-between border-b px-8 py-6 bg-slate-50">
-                    <h2 class="text-xl font-black uppercase italic">Privacy Policy</h2>
-                    <button onclick="toggleModal('privacy-modal')" class="p-2 hover:bg-slate-200 rounded-full transition text-2xl">✕</button>
+            <div class="relative w-full max-w-4xl rounded-[3rem] bg-white shadow-2xl overflow-hidden border border-white/20">
+                <div class="flex items-center justify-between border-b px-10 py-8 bg-slate-50">
+                    <h2 class="text-2xl font-black uppercase italic tracking-tighter">Privacy Policy</h2>
+                    <button onclick="toggleModal('privacy-modal')" class="p-3 hover:bg-slate-200 rounded-full transition text-2xl">✕</button>
                 </div>
-                <div class="max-h-[70vh] overflow-y-auto px-8 py-10 text-slate-700 leading-relaxed text-sm">
-                    <p class="text-blue-600 font-bold mb-6 italic underline underline-offset-4">Last updated November 17, 2025</p>
-                    <p class="mb-4">This Privacy Notice for <strong>Behzad Saffary Khozani</strong> (“we,” “us,” or “our“), describes how and why we might access, collect, store, use, and/or share your personal information when you use our services.</p>
-                    <div class="bg-blue-50 p-6 rounded-2xl mb-8 border border-blue-100">
-                        <h4 class="font-bold text-blue-900 mb-2">KEY SUMMARY</h4>
-                        <p class="text-xs">We collect names, phone numbers, and emails you provide. <strong>No mobile opt-in data will be shared with third parties or affiliates.</strong> We do a needs analysis to provide insurance options and submit applications to underwriters.</p>
+                <div class="max-h-[70vh] overflow-y-auto px-10 py-12 text-slate-700 leading-relaxed text-sm">
+                    <p class="text-blue-600 font-bold mb-8 italic underline underline-offset-8 decoration-blue-200 text-base">Last updated February 2, 2026</p>
+                    
+                    <p class="mb-6 text-base">This Privacy Notice for <strong>Behzad Saffary Khozani</strong> ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share your personal information when you use our services.</p>
+
+                    <div class="bg-blue-50 p-8 rounded-[2rem] mb-10 border border-blue-100">
+                        <h4 class="font-black text-blue-900 mb-4 uppercase text-xs tracking-widest">Summary of Key Points</h4>
+                        <p class="text-sm leading-7">We collect personal information that you provide to us (names, phone numbers, emails). We process this to provide insurance options and submit applications to underwriters. <strong>No mobile opt-in data will be shared with third parties or affiliates.</strong></p>
                     </div>
-                    <h4 class="font-bold mt-6 mb-2">CONTACT INFORMATION:</h4>
-                    <p>Behzad Saffary Khozani<br>2009 Kaiser Dr, Austin, TX 78748, United States<br>Email: <span class="font-bold">saffarilaw@outlook.com</span></p>
+
+                    <h4 class="font-black text-slate-900 mb-6 uppercase text-xs tracking-widest border-b pb-2">What Information Do We Collect?</h4>
+                    <p class="mb-8">We collect names, phone numbers, email addresses, and mailing addresses that you voluntarily provide when expressing interest in Whole Life and Term Life Insurance.</p>
+
+                    <h4 class="font-black text-slate-900 mb-6 uppercase text-xs tracking-widest border-b pb-2">How Do We Use Your Information?</h4>
+                    <p class="mb-8">We use your information to contact you about insurance options, provide quotes, and submit applications to insurance underwriters on your behalf.</p>
+
+                    <h4 class="font-black text-slate-900 mb-6 uppercase text-xs tracking-widest border-b pb-2">Contact Us</h4>
+                    <div class="bg-slate-50 p-8 rounded-[2rem]">
+                        <p class="font-bold text-lg mb-1">Behzad Saffary Khozani</p>
+                        <p class="mb-1 italic">Globe Life - Liberty National Division</p>
+                        <p class="mb-2">📞 <a href="tel:4058381020" class="text-blue-600 font-bold hover:underline">(405) 838-1020</a></p>
+                        <p class="text-blue-600 font-bold">✉️ BehzadSaffaryKhozani.Globe@gmail.com</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-50 border-t flex justify-end">
+                    <button onclick="toggleModal('privacy-modal')" class="bg-slate-900 text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-800 transition">I Understand</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript -->
     <script>
+        // Toggle Modal
         function toggleModal(id) {
             const modal = document.getElementById(id);
             modal.classList.toggle('hidden');
             document.body.classList.toggle('modal-open');
         }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Handle Form Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!validateForm(data)) {
+                return false;
+            }
+            
+            // Here you would typically send the data to a server
+            // For now, we'll just show a success message
+            console.log('Form data:', data);
+            
+            // Show success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.classList.remove('hidden');
+            
+            // Reset form
+            event.target.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+            
+            // In production, you would send this to your email service or CRM
+            // Example with EmailJS or similar service:
+            /*
+            emailjs.send('service_id', 'template_id', data)
+                .then(() => {
+                    successMessage.classList.remove('hidden');
+                    event.target.reset();
+                })
+                .catch((error) => {
+                    alert('Error sending message. Please call us directly.');
+                });
+            */
+            
+            return false;
+        }
+
+        // Validate Form
+        function validateForm(data) {
+            let isValid = true;
+            
+            // Validate first name
+            if (!data.firstName || data.firstName.trim() === '') {
+                showError('firstName');
+                isValid = false;
+            } else {
+                hideError('firstName');
+            }
+            
+            // Validate last name
+            if (!data.lastName || data.lastName.trim() === '') {
+                showError('lastName');
+                isValid = false;
+            } else {
+                hideError('lastName');
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!data.email || !emailRegex.test(data.email)) {
+                showError('email');
+                isValid = false;
+            } else {
+                hideError('email');
+            }
+            
+            // Validate message
+            if (!data.message || data.message.trim() === '') {
+                showError('message');
+                isValid = false;
+            } else {
+                hideError('message');
+            }
+            
+            return isValid;
+        }
+
+        // Show Error
+        function showError(fieldName) {
+            const errorElement = document.getElementById(`${fieldName}-error`);
+            const inputElement = document.getElementById(fieldName);
+            if (errorElement) errorElement.classList.remove('hidden');
+            if (inputElement) inputElement.classList.add('ring-2', 'ring-red-500');
+        }
+
+        // Hide Error
+        function hideError(fieldName) {
+            const errorElement = document.getElementById(`${fieldName}-error`);
+            const inputElement = document.getElementById(fieldName);
+            if (errorElement) errorElement.classList.add('hidden');
+            if (inputElement) inputElement.classList.remove('ring-2', 'ring-red-500');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const button = event.target.closest('button');
+            
+            if (!event.target.closest('nav') && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 
 </body>
