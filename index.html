@@ -3,82 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellben | Leading Insurance Marketing in USA</title>
+    <title>Wellben | Insurance Marketing Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .modal-open { overflow: hidden; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <nav class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold text-blue-700 tracking-tight">Wellben</div>
+            <div class="text-2xl font-extrabold text-blue-700 tracking-tight italic">Wellben</div>
             <div class="hidden md:flex space-x-8 font-semibold text-slate-600">
                 <a href="#home" class="hover:text-blue-600 transition">Home</a>
                 <a href="#about" class="hover:text-blue-600 transition">About Us</a>
                 <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
-                <a href="#terms" class="hover:text-blue-600 transition text-sm flex items-center">Terms of Service</a>
+                <button onclick="toggleModal('privacy-modal')" class="hover:text-blue-600 transition text-sm bg-slate-100 px-3 py-1 rounded-lg">Privacy Policy</button>
             </div>
-            <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">Get a Quote</a>
+            <a href="#contact" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200 font-bold">Get Started</a>
         </div>
     </nav>
 
     <section id="home" class="pt-32 pb-20 px-6">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Premier Marketing Partner</span>
-                <h1 class="text-5xl md:text-6xl font-extrabold mt-6 leading-tight text-slate-900">
-                    Empowering Insurance Agents Across <span class="text-blue-600">America.</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-slate-900">
+                    Smart Insurance <span class="text-blue-600">Marketing</span> Solutions.
                 </h1>
-                <p class="mt-6 text-xl text-slate-600 leading-relaxed">
-                    Wellben provides cutting-edge marketing strategies, high-intent lead generation, and digital tools designed specifically for the US insurance market.
+                <p class="mt-8 text-xl text-slate-600 leading-relaxed max-w-xl">
+                    Helping agencies across the United States grow their Medicare, Life, and Health portfolios through data-driven digital strategies.
                 </p>
+                <div class="mt-10 flex space-x-4">
+                    <a href="#contact" class="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition">Consult Free</a>
+                    <a href="#about" class="border border-slate-300 px-8 py-4 rounded-2xl font-bold hover:bg-slate-100 transition">Learn More</a>
+                </div>
             </div>
             <div class="relative">
-                <div class="absolute -inset-4 bg-blue-500/10 rounded-full blur-3xl"></div>
-                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80" alt="Insurance Team" class="relative rounded-3xl shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Dashboard" class="rounded-[2rem] shadow-2xl border-8 border-white">
             </div>
         </div>
     </section>
 
     <section id="about" class="py-24 bg-white px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">About Wellben</h2>
-            <p class="text-lg text-slate-600 leading-8">
-                With over a decade of experience in the USA insurance landscape, Wellben bridges the gap between top-tier carriers and independent agents. We specialize in Medicare, Life, and Health insurance marketing automation, ensuring our partners stay ahead in a competitive digital world.
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-center mb-12">Who We Are</h2>
+            <p class="text-lg text-slate-600 leading-relaxed text-center">
+                Wellben is a premier marketing partner for insurance professionals in the USA. We specialize in Whole Life and Term Life Insurance lead generation, providing a comprehensive needs analysis to connect high-intent clients with the right agents.
             </p>
         </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+    <section id="contact" class="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 relative z-10">
             <div>
-                <h2 class="text-4xl font-bold mb-6">Let's Grow Your Agency</h2>
-                <p class="text-slate-400 mb-8 italic">Ready to scale your insurance business in the US? Reach out to our expert team today.</p>
-                <div class="space-y-4">
-                    <p class="flex items-center">📍 <span class="ml-3">750 N. Saint Paul St. Ste 250, Dallas, TX</span></p>
-                    <p class="flex items-center">📧 <span class="ml-3">info@wellben.net</span></p>
-                    <p class="flex items-center">📞 <span class="ml-3">+1 (800) WELLBEN</span></p>
+                <h2 class="text-4xl font-extrabold mb-6">Contact Our Team</h2>
+                <p class="text-slate-400 mb-10">We are ready to assist you in Austin, Texas and beyond.</p>
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-600/20 p-3 rounded-lg text-blue-400">📍</div>
+                        <span>2009 Kaiser Dr, Austin, TX 78748</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-600/20 p-3 rounded-lg text-blue-400">📧</div>
+                        <a href="mailto:saffarilaw@outlook.com" class="hover:text-blue-400 transition">saffarilaw@outlook.com</a>
+                    </div>
                 </div>
             </div>
-            <form class="space-y-4 bg-slate-800 p-8 rounded-2xl border border-slate-700">
-                <input type="text" placeholder="Full Name" class="w-full p-4 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500">
-                <input type="email" placeholder="Business Email" class="w-full p-4 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500">
-                <textarea placeholder="Message" rows="4" class="w-full p-4 rounded-lg bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500"></textarea>
-                <button class="w-full bg-blue-600 py-4 rounded-lg font-bold hover:bg-blue-500 transition">Send Message</button>
+            <form class="bg-white/5 backdrop-blur-lg p-8 rounded-3xl border border-white/10">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <input type="text" placeholder="First Name" class="bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" placeholder="Last Name" class="bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <input type="email" placeholder="Business Email" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white mb-4 outline-none">
+                <textarea placeholder="How can we help?" rows="4" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white mb-6 outline-none"></textarea>
+                <button class="w-full bg-blue-600 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-lg">Submit Request</button>
             </form>
         </div>
     </section>
 
-    <section id="terms" class="py-16 bg-slate-50 px-6 border-t border-slate-200">
-        <div class="max-w-5xl mx-auto text-slate-500 text-sm">
-            <h3 class="font-bold text-slate-800 mb-4">Terms of Service</h3>
-            <p class="mb-4 text-justify">
-                Welcome to Wellben.net. By accessing our website and using our services, you agree to comply with the regulations of the Federal Trade Commission (FTC) and the Telephone Consumer Protection Act (TCPA). Our marketing materials are intended for licensed insurance professionals in the United States only. Wellben is not an insurance carrier but a marketing service provider.
-            </p>
-            <p>© 2026 Wellben. All Rights Reserved.</p>
+    <footer class="py-10 px-6 border-t border-slate-200 text-center">
+        <p class="text-slate-500 text-sm">© 2026 Wellben. All rights reserved. | <button onclick="toggleModal('privacy-modal')" class="underline">Privacy Policy</button></p>
+    </footer>
+
+    <div id="privacy-modal" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-slate-900/90 backdrop-blur-sm">
+        <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="relative w-full max-w-4xl rounded-3xl bg-white shadow-2xl overflow-hidden">
+                <div class="flex items-center justify-between border-b px-8 py-6 bg-slate-50">
+                    <h2 class="text-xl font-extrabold">Privacy Policy</h2>
+                    <button onclick="toggleModal('privacy-modal')" class="p-2 hover:bg-slate-200 rounded-full transition">✕</button>
+                </div>
+                <div class="max-h-[70vh] overflow-y-auto px-8 py-10 text-slate-700 leading-relaxed">
+                    <p class="text-blue-600 font-bold mb-6 italic text-sm underline decoration-blue-200 underline-offset-4">Last updated November 17, 2025</p>
+                    
+                    <p class="mb-6">This Privacy Notice for <strong>Behzad Saffary Khozani</strong> (“we,” “us,” or “our“), describes how and why we might access, collect, store, use, and/or share your personal information when you use our services.</p>
+
+                    <div class="bg-blue-50 border border-blue-100 p-6 rounded-2xl mb-8">
+                        <h3 class="font-bold text-blue-800 mb-3">SUMMARY OF KEY POINTS</h3>
+                        <p class="text-sm">We process personal information depending on how you interact with Wellben. We do not process sensitive personal information. We do not collect any information from third parties.</p>
+                    </div>
+
+                    <h4 class="font-bold text-slate-900 mb-4 uppercase tracking-wider text-sm">1. WHAT INFORMATION DO WE COLLECT?</h4>
+                    <p class="mb-6">We collect names, phone numbers, email addresses, mailing addresses, and job titles that you voluntarily provide when expressing interest in our Whole Life and Term Life Insurance marketing services.</p>
+
+                    <h4 class="font-bold text-slate-900 mb-4 uppercase tracking-wider text-sm">2. HOW DO WE PROCESS YOUR INFORMATION?</h4>
+                    <p class="mb-6">We process your information to deliver services, respond to inquiries, and comply with the law. <strong>No mobile opt-in data will be shared with third parties or affiliates.</strong></p>
+
+                    <h4 class="font-bold text-slate-900 mb-4 uppercase tracking-wider text-sm">3. YOUR PRIVACY RIGHTS</h4>
+                    <p class="mb-6">Depending on your state (Texas, Kentucky, or Colorado), you may have the right to request access, correction, or deletion of your data. Contact us at the email below to exercise these rights.</p>
+
+                    <div class="mt-10 pt-6 border-t border-slate-100">
+                        <p class="font-bold">Contact Us:</p>
+                        <p>Behzad Saffary Khozani</p>
+                        <p>2009 Kaiser Dr, Austin, TX 78748</p>
+                        <p class="text-blue-600 font-semibold">saffarilaw@outlook.com</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+
+    <script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            document.body.classList.toggle('modal-open');
+        }
+    </script>
 
 </body>
 </html>
